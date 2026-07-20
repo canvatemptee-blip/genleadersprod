@@ -1,0 +1,2 @@
+ALTER TABLE newsletter_subscribers
+ADD COLUMN unsubscribe_expires_at TIMESTAMPTZ;
