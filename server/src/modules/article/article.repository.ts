@@ -47,7 +47,7 @@ export class ArticleRepository
 
             categoryFilter =
                 `
-            AND LOWER(c.name) =
+            AND LOWER(c.slug) =
                 LOWER($1)
             `;
         }
@@ -66,6 +66,7 @@ export class ArticleRepository
                 a.published_at,
 
                 c.name AS category,
+                c.slug AS category_slug,
 
                 ad.name AS author
 
