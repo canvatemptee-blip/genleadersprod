@@ -27,7 +27,7 @@ export const ENDPOINTS = {
             "/articles/featured",
 
         CREATE:
-            "/admin/articles",
+            "/articles",
     },
 
 
