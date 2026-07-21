@@ -69,13 +69,11 @@ export class NewsletterService {
                 .trim()
                 .toLowerCase();
 
-
         const existing =
             await this.repository
                 .findByEmail(
                     normalizedEmail,
                 );
-
 
         if (
             existing?.is_verified
@@ -83,23 +81,13 @@ export class NewsletterService {
             return;
         }
 
-
         const verificationToken =
             createNewsletterToken();
-
 
         const verificationExpiresAt =
             createExpiryDate(
                 VERIFICATION_EXPIRY_HOURS,
             );
-
-
-        await this.mailService
-            .sendNewsletterVerification(
-                normalizedEmail,
-                verificationToken.token,
-            );
-
 
         if (
             existing
@@ -114,22 +102,31 @@ export class NewsletterService {
                         verificationExpiresAt,
                     },
                 );
+        } else {
+            await this.repository
+                .createPending({
+                    email:
+                        normalizedEmail,
 
+                    verificationTokenHash:
+                        verificationToken.hash,
 
-            return;
+                    verificationExpiresAt,
+                });
         }
 
-
-        await this.repository
-            .createPending({
-                email:
+        try {
+            await this.mailService
+                .sendNewsletterVerification(
                     normalizedEmail,
-
-                verificationTokenHash:
-                    verificationToken.hash,
-
-                verificationExpiresAt,
-            });
+                    verificationToken.token,
+                );
+        } catch (error) {
+            console.error(
+                "Failed to send verification email:",
+                error,
+            );
+        }
     }
 
 
