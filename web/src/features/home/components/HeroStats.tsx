@@ -5,15 +5,11 @@ interface HeroStat {
 
 const stats: HeroStat[] = [
     {
-        value: "500+",
-        label: "Published Articles",
+        value: "2 Million+",
+        label: "Monthly Impressions",
     },
     {
-        value: "150+",
-        label: "Podcast Episodes",
-    },
-    {
-        value: "25K+",
+        value: "50K+",
         label: "Monthly Readers",
     },
 ];
