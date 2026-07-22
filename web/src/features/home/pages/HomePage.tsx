@@ -6,6 +6,7 @@ import FeaturedArticles from "../components/FeaturedArticles";
 import LatestArticles from "../components/LatestArticles";
 import GetFeaturedSection from "../components/GetFeaturedSection";
 import NewsletterSection from "../components/NewsletterSection";
+import GetFeaturedPopup from "../components/GetFeaturedPopup";
 
 import {
     LINKEDIN_FEATURES,
@@ -90,6 +91,7 @@ export default function HomePage() {
 
     return (
         <>
+            <GetFeaturedPopup />
             <section id="home-content">
                 <Hero />
 

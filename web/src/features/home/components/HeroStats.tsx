@@ -12,6 +12,10 @@ const stats: HeroStat[] = [
         value: "50K+",
         label: "Monthly Readers",
     },
+    {
+        value: "500+",
+        label: "Articlles",
+    },
 ];
 
 export default function HeroStats() {
