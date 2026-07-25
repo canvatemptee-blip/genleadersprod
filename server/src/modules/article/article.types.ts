@@ -19,9 +19,19 @@ export interface Article {
 
     author_id: number;
 
+    author?: string;
+
     category_id: number;
 
+    category?: string;
+
+    category_slug?: string;
+
     reading_time: number;
+
+    featured_person_name: string | null;
+
+    featured_person_linkedin: string | null;
 
     is_featured: boolean;
 

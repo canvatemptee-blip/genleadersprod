@@ -53,6 +53,25 @@ const articleFields = {
         .int()
         .positive(),
 
+    featured_person_name: z
+        .string()
+        .trim()
+        .max(150)
+        .nullable()
+        .optional(),
+
+    featured_person_linkedin: z
+        .string()
+        .trim()
+        .url("Please provide a valid URL.")
+        .refine(
+            (url) =>
+                url.includes("linkedin.com"),
+            "Please provide a LinkedIn profile URL.",
+        )
+        .nullable()
+        .optional(),
+
     is_featured: z
         .boolean()
         .default(false),

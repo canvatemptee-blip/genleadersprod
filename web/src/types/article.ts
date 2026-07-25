@@ -25,5 +25,7 @@ export interface Article {
     category: string;
     author: string;
     reading_time: number;
+    featured_person_name: string | null;
+    featured_person_linkedin: string | null;
     published_at: string;
 }

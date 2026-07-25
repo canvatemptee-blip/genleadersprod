@@ -85,6 +85,34 @@ export default function ArticlePage() {
                         </p>
                     )}
                 </div>
+
+                {(article.featured_person_name ||
+                    article.featured_person_linkedin) && (
+                        <section className="mt-16 rounded-3xl border border-slate-200 bg-slate-50 p-8">
+                            <h2 className="text-2xl font-bold text-[#06154A]">
+                                Featured Person
+                            </h2>
+
+                            {article.featured_person_name && (
+                                <p className="mt-3 text-lg font-semibold text-slate-800">
+                                    {article.featured_person_name}
+                                </p>
+                            )}
+
+                            {article.featured_person_linkedin && (
+                                <a
+                                    href={
+                                        article.featured_person_linkedin
+                                    }
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-6 inline-flex items-center rounded-xl bg-[#0077B5] px-6 py-3 font-semibold text-white transition hover:bg-[#005F91]"
+                                >
+                                    Connect on LinkedIn
+                                </a>
+                            )}
+                        </section>
+                    )}
             </div>
         </article>
     );

@@ -29,6 +29,10 @@ export interface AdminArticle {
 
     reading_time: number;
 
+    featured_person_name: string | null;
+
+    featured_person_linkedin: string | null;
+
     is_featured: boolean;
 
     status: ArticleStatus;

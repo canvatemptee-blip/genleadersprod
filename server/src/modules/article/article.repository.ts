@@ -32,10 +32,8 @@ export class ArticleRepository
         const values:
             unknown[] = [];
 
-
         let categoryFilter =
             "";
-
 
         if (
             category
@@ -44,14 +42,12 @@ export class ArticleRepository
                 category,
             );
 
-
             categoryFilter =
                 `
             AND LOWER(c.slug) =
                 LOWER($1)
             `;
         }
-
 
         const result =
             await this.db.query<Article>(
@@ -89,7 +85,6 @@ export class ArticleRepository
                 values,
             );
 
-
         return result.rows;
     }
 
@@ -119,6 +114,10 @@ export class ArticleRepository
                 a.content,
                 a.cover_image,
                 a.reading_time,
+
+                a.featured_person_name,
+                a.featured_person_linkedin,
+
                 a.status,
                 a.scheduled_at,
                 a.published_at,
@@ -158,6 +157,8 @@ export class ArticleRepository
                 author_id,
                 category_id,
                 reading_time,
+                featured_person_name,
+                featured_person_linkedin,
                 is_featured,
                 status,
                 scheduled_at,
@@ -175,7 +176,9 @@ export class ArticleRepository
                 $9,
                 $10,
                 $11,
-                $12
+                $12,
+                $13,
+                $14
             )
             RETURNING *
             `,
@@ -191,6 +194,10 @@ export class ArticleRepository
                 authorId,
                 data.category_id,
                 data.reading_time,
+                data.featured_person_name ??
+                null,
+                data.featured_person_linkedin ??
+                null,
                 data.is_featured,
                 data.status,
                 scheduledAt,
@@ -214,12 +221,14 @@ export class ArticleRepository
                     cover_image = $5,
                     category_id = $6,
                     reading_time = $7,
-                    is_featured = $8,
-                    status = $9,
-                    scheduled_at = $10,
-                    published_at = $11,
+                    featured_person_name = $8,
+                    featured_person_linkedin = $9,
+                    is_featured = $10,
+                    status = $11,
+                    scheduled_at = $12,
+                    published_at = $13,
                     updated_at = NOW()
-                WHERE id = $12
+                WHERE id = $14
                 RETURNING *
                 `,
                 [
@@ -230,6 +239,8 @@ export class ArticleRepository
                     article.cover_image,
                     article.category_id,
                     article.reading_time,
+                    article.featured_person_name,
+                    article.featured_person_linkedin,
                     article.is_featured,
                     article.status,
                     article.scheduled_at,

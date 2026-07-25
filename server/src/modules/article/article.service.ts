@@ -119,6 +119,12 @@ export class ArticleService {
             );
         }
 
+        dto.featured_person_name =
+            dto.featured_person_name?.trim() || null;
+
+        dto.featured_person_linkedin =
+            dto.featured_person_linkedin?.trim() || null;
+
         return this.repository.create(
             dto,
             authorId,
@@ -176,6 +182,12 @@ export class ArticleService {
                 );
             }
         }
+
+        dto.featured_person_name =
+            dto.featured_person_name?.trim() || null;
+
+        dto.featured_person_linkedin =
+            dto.featured_person_linkedin?.trim() || null;
 
         const updated:
             Article = {

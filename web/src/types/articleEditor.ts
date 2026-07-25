@@ -39,6 +39,10 @@ export interface ArticleEditorValues {
 
     reading_time: number;
 
+    featured_person_name: string;
+
+    featured_person_linkedin: string;
+
     is_featured: boolean;
 
     status: ArticleStatus;
@@ -61,6 +65,10 @@ export interface CreateArticlePayload {
     category_id: number;
 
     reading_time: number;
+
+    featured_person_name?: string | null;
+
+    featured_person_linkedin?: string | null;
 
     is_featured: boolean;
 

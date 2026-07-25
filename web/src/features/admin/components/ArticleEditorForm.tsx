@@ -88,6 +88,10 @@ const defaultValues:
 
     reading_time: 5,
 
+    featured_person_name: "",
+
+    featured_person_linkedin: "",
+
     is_featured: false,
 
     status: "draft",
@@ -366,6 +370,12 @@ export default function ArticleEditorForm({
             reading_time:
                 values.reading_time,
 
+            featured_person_name:
+                values.featured_person_name.trim() || null,
+
+            featured_person_linkedin:
+                values.featured_person_linkedin.trim() || null,
+
             is_featured:
                 values.is_featured,
 
@@ -573,38 +583,29 @@ export default function ArticleEditorForm({
 
 
                     <ArticleDetailsPanel
-                        categoryId={
-                            values.category_id
+                        categoryId={values.category_id}
+                        readingTime={values.reading_time}
+
+                        featuredPersonName={values.featured_person_name}
+                        featuredPersonLinkedin={values.featured_person_linkedin}
+
+                        categories={categories}
+                        categoriesLoading={categoriesLoading}
+
+                        onCategoryChange={(categoryId) =>
+                            updateField("category_id", categoryId)
                         }
 
-                        readingTime={
-                            values.reading_time
+                        onReadingTimeChange={(readingTime) =>
+                            updateField("reading_time", readingTime)
                         }
 
-                        categories={
-                            categories
+                        onFeaturedPersonNameChange={(name) =>
+                            updateField("featured_person_name", name)
                         }
 
-                        categoriesLoading={
-                            categoriesLoading
-                        }
-
-                        onCategoryChange={(
-                            categoryId,
-                        ) =>
-                            updateField(
-                                "category_id",
-                                categoryId,
-                            )
-                        }
-
-                        onReadingTimeChange={(
-                            readingTime,
-                        ) =>
-                            updateField(
-                                "reading_time",
-                                readingTime,
-                            )
+                        onFeaturedPersonLinkedinChange={(linkedin) =>
+                            updateField("featured_person_linkedin", linkedin)
                         }
                     />
 

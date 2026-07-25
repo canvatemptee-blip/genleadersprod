@@ -153,8 +153,7 @@ export default function AdminEditArticlePage() {
     }
 
 
-    const initialValues:
-        ArticleEditorValues = {
+    const initialValues: ArticleEditorValues = {
         title:
             article.title,
 
@@ -178,6 +177,14 @@ export default function AdminEditArticlePage() {
 
         reading_time:
             article.reading_time,
+
+        featured_person_name:
+            article.featured_person_name ??
+            "",
+
+        featured_person_linkedin:
+            article.featured_person_linkedin ??
+            "",
 
         is_featured:
             article.is_featured,
