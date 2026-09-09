@@ -73,6 +73,12 @@ export const ENDPOINTS = {
     },
 
 
+    REGISTRATIONS: {
+        SUBMIT:
+            "/registrations",
+    },
+
+
     ADMIN: {
         ARTICLES: {
             GET_ALL:
@@ -106,6 +112,27 @@ export const ENDPOINTS = {
                 id: number,
             ) =>
                 `/admin/newsletter/${id}`,
+        },
+
+
+        REGISTRATIONS: {
+            GET_ALL:
+                "/admin/registrations",
+
+            GET_BY_ID: (
+                id: number,
+            ) =>
+                `/admin/registrations/${id}`,
+
+            UPDATE_STATUS: (
+                id: number,
+            ) =>
+                `/admin/registrations/${id}/status`,
+
+            DELETE: (
+                id: number,
+            ) =>
+                `/admin/registrations/${id}`,
         },
 
 

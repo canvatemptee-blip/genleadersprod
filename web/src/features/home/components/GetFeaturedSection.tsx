@@ -1,7 +1,11 @@
+import { Link } from "react-router-dom";
+
 import LinkedInPreviewCard from "./LinkedInPreviewCard";
 import PodcastPreviewCard from "./PodcastPreviewCard";
 
 import { FORMS } from "@/config/forms";
+
+import { ROUTES } from "@/config/routes";
 
 import type { ContentLink } from "@/types/content";
 
@@ -48,14 +52,12 @@ export default function GetFeaturedSection({
                             </p>
                         </div>
 
-                        <a
-                            href={FORMS.LINKEDIN}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <Link
+                            to={ROUTES.GET_FEATURED}
                             className="rounded-full bg-white px-7 py-4 text-center font-semibold text-[#06154A] transition hover:bg-slate-100"
                         >
                             Get Featured
-                        </a>
+                        </Link>
                     </div>
 
                     <div className="grid gap-6 lg:grid-cols-3">

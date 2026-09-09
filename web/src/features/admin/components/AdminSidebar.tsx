@@ -1,4 +1,5 @@
 import {
+    ClipboardList,
     FileText,
     FolderOpen,
     LayoutDashboard,
@@ -18,6 +19,7 @@ import {
 import {
     canManageCategories,
     canManageNewsletter,
+    canManageRegistrations,
     canManageStaff,
 } from "@/features/auth/permissions";
 
@@ -110,6 +112,25 @@ export default function AdminSidebar({
 
             visible:
                 canManageNewsletter(
+                    role,
+                ),
+        },
+
+        {
+            label:
+                "Registrations",
+
+            href:
+                ROUTES.ADMIN_REGISTRATIONS,
+
+            icon:
+                ClipboardList,
+
+            end:
+                false,
+
+            visible:
+                canManageRegistrations(
                     role,
                 ),
         },

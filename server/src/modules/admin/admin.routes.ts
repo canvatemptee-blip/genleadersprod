@@ -27,6 +27,10 @@ import {
 } from "./admin.controller.js";
 
 import {
+    updateRegistrationStatusSchema,
+} from "../registration/registration.validation.js";
+
+import {
     createStaffSchema,
     updateStaffRoleSchema,
     updateStaffStatusSchema,
@@ -198,6 +202,61 @@ router.delete(
 
     asyncHandler(
         controller.deleteSubscriber,
+    ),
+);
+
+router.get(
+    "/registrations",
+
+    authorizePermissions(
+        "registration:manage",
+    ),
+
+    asyncHandler(
+        controller.getRegistrations,
+    ),
+);
+
+
+router.get(
+    "/registrations/:id",
+
+    authorizePermissions(
+        "registration:manage",
+    ),
+
+    asyncHandler(
+        controller.getRegistration,
+    ),
+);
+
+
+router.patch(
+    "/registrations/:id/status",
+
+    authorizePermissions(
+        "registration:manage",
+    ),
+
+    validate(
+        updateRegistrationStatusSchema,
+    ),
+
+    asyncHandler(
+        controller.updateRegistrationStatus,
+    ),
+);
+
+
+router.delete(
+    "/registrations/:id",
+
+    authorizePermissions(
+        "registration:manage",
+    ),
+
+    asyncHandler(
+        controller.deleteRegistration,
     ),
 );
 

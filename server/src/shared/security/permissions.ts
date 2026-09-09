@@ -10,6 +10,7 @@ export type Permission =
     | "article:delete"
     | "category:manage"
     | "newsletter:manage"
+    | "registration:manage"
     | "staff:manage"
     | "upload:create";
 
@@ -26,6 +27,7 @@ export const ROLE_PERMISSIONS:
         "article:delete",
         "category:manage",
         "newsletter:manage",
+        "registration:manage",
         "staff:manage",
         "upload:create",
     ],
@@ -37,6 +39,7 @@ export const ROLE_PERMISSIONS:
         "article:delete",
         "category:manage",
         "newsletter:manage",
+        "registration:manage",
         "upload:create",
     ],
 

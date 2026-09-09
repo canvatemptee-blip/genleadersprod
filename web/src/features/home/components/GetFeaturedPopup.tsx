@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import Button from "@/shared/ui/Button";
 import { FORMS } from "@/config/forms";
+import { ROUTES } from "@/config/routes";
 
 const POPUP_SESSION_KEY = "genleaders-get-featured-popup";
 
 export default function GetFeaturedPopup() {
     const [isOpen, setIsOpen] = useState(false);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const hasSeenPopup = sessionStorage.getItem(
@@ -96,13 +100,13 @@ export default function GetFeaturedPopup() {
                 <div className="mt-10 space-y-4">
                     <Button
                         className="w-full py-3 text-base"
-                        onClick={() =>
-                            window.open(
-                                FORMS.LINKEDIN,
-                                "_blank",
-                                "noopener,noreferrer",
-                            )
-                        }
+                        onClick={() => {
+                            setIsOpen(false);
+
+                            navigate(
+                                ROUTES.GET_FEATURED,
+                            );
+                        }}
                     >
                         Featured on LinkedIn →
                     </Button>

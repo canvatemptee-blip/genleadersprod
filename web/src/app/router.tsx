@@ -26,6 +26,9 @@ import ArticlePage
 import AboutPage
     from "@/features/about/pages/AboutPage";
 
+import RegistrationPage
+    from "@/features/registration/pages/RegistrationPage";
+
 
 import NewsletterVerifyPage
     from "@/features/newsletter/pages/NewsletterVerifyPage";
@@ -64,6 +67,9 @@ import AdminCategoriesPage
 
 import AdminNewsletterPage
     from "@/features/admin/pages/AdminNewsletterPage";
+
+import AdminRegistrationsPage
+    from "@/features/admin/pages/AdminRegistrationsPage";
 
 import AdminStaffPage
     from "@/features/admin/pages/AdminStaffPage";
@@ -112,6 +118,16 @@ export function AppRouter() {
                         }
                         element={
                             <AboutPage />
+                        }
+                    />
+
+
+                    <Route
+                        path={
+                            ROUTES.GET_FEATURED
+                        }
+                        element={
+                            <RegistrationPage />
                         }
                     />
                 </Route>
@@ -244,6 +260,26 @@ export function AppRouter() {
                                 }
                                 element={
                                     <AdminNewsletterPage />
+                                }
+                            />
+                        </Route>
+
+
+                        {/* Registration management */}
+
+                        <Route
+                            element={
+                                <PermissionRoute
+                                    permission="registration:manage"
+                                />
+                            }
+                        >
+                            <Route
+                                path={
+                                    ROUTES.ADMIN_REGISTRATIONS
+                                }
+                                element={
+                                    <AdminRegistrationsPage />
                                 }
                             />
                         </Route>

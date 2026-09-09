@@ -17,6 +17,16 @@ import uploadRoutes
 
 const app = express();
 
+/**
+ * The API runs behind Render's reverse proxy in
+ * production. Without this, express-rate-limit keys every
+ * request on the proxy address instead of the client's.
+ */
+app.set(
+    "trust proxy",
+    1,
+);
+
 app.use(helmet());
 
 app.use(

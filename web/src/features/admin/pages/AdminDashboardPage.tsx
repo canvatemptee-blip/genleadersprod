@@ -1,5 +1,6 @@
 import {
     ArrowRight,
+    ClipboardList,
     FileText,
     FolderOpen,
     Mail,
@@ -17,6 +18,7 @@ import {
 import {
     canManageCategories,
     canManageNewsletter,
+    canManageRegistrations,
     canManageStaff,
 } from "@/features/auth/permissions";
 
@@ -84,6 +86,25 @@ export default function AdminDashboardPage() {
 
             visible:
                 canManageNewsletter(
+                    role,
+                ),
+        },
+
+        {
+            title:
+                "Registrations",
+
+            description:
+                "Review Get Featured registrations and track follow up with each lead.",
+
+            href:
+                ROUTES.ADMIN_REGISTRATIONS,
+
+            icon:
+                ClipboardList,
+
+            visible:
+                canManageRegistrations(
                     role,
                 ),
         },

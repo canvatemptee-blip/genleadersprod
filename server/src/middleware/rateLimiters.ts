@@ -105,3 +105,27 @@ export const newsletterTokenLimiter =
                 "Too many confirmation attempts. Please try again later.",
         },
     });
+
+
+export const registrationSubmitLimiter =
+    rateLimit({
+        windowMs:
+            fifteenMinutes,
+
+        limit:
+            5,
+
+        standardHeaders:
+            "draft-8",
+
+        legacyHeaders:
+            false,
+
+        message: {
+            success:
+                false,
+
+            message:
+                "Too many registration requests. Please try again later.",
+        },
+    });

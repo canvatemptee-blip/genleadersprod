@@ -8,6 +8,7 @@ export async function resetDatabase():
     await db.query(
         `
         TRUNCATE TABLE
+            registrations,
             newsletter_subscribers,
             articles,
             categories,

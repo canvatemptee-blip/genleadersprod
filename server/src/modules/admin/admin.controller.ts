@@ -4,6 +4,7 @@ import { ApiResponse } from "../../shared/utils/ApiResponse.js";
 import { ArticleService } from "../article/article.service.js";
 
 import { NewsletterService } from "../newsletter/newsletter.service.js";
+import { RegistrationService } from "../registration/registration.service.js";
 
 import { AdminService } from "./admin.service.js";
 
@@ -11,6 +12,7 @@ export class AdminController {
     constructor(
         private readonly articleService = new ArticleService(),
         private readonly newsletterService = new NewsletterService(),
+        private readonly registrationService = new RegistrationService(),
         private readonly adminService = new AdminService(),
     ) { }
 
@@ -201,6 +203,73 @@ export class AdminController {
             ApiResponse.success(
                 "Staff account status updated successfully.",
                 staff,
+            ),
+        );
+    };
+
+    getRegistrations = async (
+        _: Request,
+        res: Response,
+    ) => {
+        const registrations =
+            await this.registrationService.getRegistrations();
+
+        return res.json(
+            ApiResponse.success(
+                "Registrations fetched successfully.",
+                registrations,
+            ),
+        );
+    };
+
+    getRegistration = async (
+        req: Request,
+        res: Response,
+    ) => {
+        const id = Number(req.params.id);
+
+        const registration =
+            await this.registrationService.getRegistrationById(id);
+
+        return res.json(
+            ApiResponse.success(
+                "Registration fetched successfully.",
+                registration,
+            ),
+        );
+    };
+
+    updateRegistrationStatus = async (
+        req: Request,
+        res: Response,
+    ) => {
+        const id = Number(req.params.id);
+
+        const registration =
+            await this.registrationService.updateRegistrationStatus(
+                id,
+                req.body.status,
+            );
+
+        return res.json(
+            ApiResponse.success(
+                "Registration status updated successfully.",
+                registration,
+            ),
+        );
+    };
+
+    deleteRegistration = async (
+        req: Request,
+        res: Response,
+    ) => {
+        const id = Number(req.params.id);
+
+        await this.registrationService.deleteRegistration(id);
+
+        return res.json(
+            ApiResponse.success(
+                "Registration deleted successfully.",
             ),
         );
     };

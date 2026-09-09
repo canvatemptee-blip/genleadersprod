@@ -71,6 +71,23 @@ export const QUERY_KEYS = {
         ] as const,
 
 
+    adminRegistrations:
+        [
+            "admin",
+            "registrations",
+        ] as const,
+
+
+    adminRegistration: (
+        id: number,
+    ) =>
+        [
+            "admin",
+            "registrations",
+            id,
+        ] as const,
+
+
     adminStaff:
         [
             "admin",

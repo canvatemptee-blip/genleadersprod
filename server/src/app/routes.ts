@@ -17,6 +17,9 @@ import adminRoutes
 import newsletterRoutes
     from "../modules/newsletter/newsletter.routes.js";
 
+import registrationRoutes
+    from "../modules/registration/registration.routes.js";
+
 import healthRoutes
     from "../modules/health/health.routes.js";
 
@@ -58,6 +61,12 @@ router.use(
 router.use(
     "/newsletter",
     newsletterRoutes,
+);
+
+
+router.use(
+    "/registrations",
+    registrationRoutes,
 );
 
 

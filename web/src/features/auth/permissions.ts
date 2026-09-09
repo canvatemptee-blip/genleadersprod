@@ -11,6 +11,7 @@ export type Permission =
     | "article:delete"
     | "category:manage"
     | "newsletter:manage"
+    | "registration:manage"
     | "staff:manage";
 
 
@@ -27,6 +28,7 @@ const rolePermissions:
         "article:delete",
         "category:manage",
         "newsletter:manage",
+        "registration:manage",
         "staff:manage",
     ],
 
@@ -38,6 +40,7 @@ const rolePermissions:
         "article:delete",
         "category:manage",
         "newsletter:manage",
+        "registration:manage",
     ],
 
     intern: [
@@ -93,6 +96,16 @@ export function canManageNewsletter(
     return hasPermission(
         role,
         "newsletter:manage",
+    );
+}
+
+
+export function canManageRegistrations(
+    role: AdminRole | null | undefined,
+) {
+    return hasPermission(
+        role,
+        "registration:manage",
     );
 }
 

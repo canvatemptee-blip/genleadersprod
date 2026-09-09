@@ -62,6 +62,14 @@ class ApiClient {
             );
         }
 
+        if (!response.ok) {
+            throw new Error(
+                (json as ApiErrorResponse)
+                    .message ||
+                "Something went wrong. Please try again."
+            );
+        }
+
         return (
             json as ApiResponse<T>
         ).data;

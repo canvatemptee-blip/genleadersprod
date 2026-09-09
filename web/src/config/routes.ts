@@ -8,6 +8,9 @@ export const ROUTES = {
     PODCASTS:
         "/podcasts",
 
+    GET_FEATURED:
+        "/get-featured",
+
     ABOUT:
         "/about",
 
@@ -39,6 +42,9 @@ export const ROUTES = {
 
     ADMIN_NEWSLETTER:
         "/admin/newsletter",
+
+    ADMIN_REGISTRATIONS:
+        "/admin/registrations",
 
     ADMIN_STAFF:
         "/admin/staff",
