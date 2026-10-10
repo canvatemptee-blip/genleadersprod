@@ -1,37 +1,83 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Button from "@/shared/ui/Button";
 import { FORMS } from "@/config/forms";
 import { ROUTES } from "@/config/routes";
 
-const POPUP_SESSION_KEY = "genleaders-get-featured-popup";
+// Set once the visitor opens either form; hides the popup for the session.
+const FORM_VISITED_SESSION_KEY =
+    "genleaders-get-featured-form-visited";
+
+// Set once the popup is shown in the articles area; cleared on leaving it.
+const ARTICLES_SEEN_SESSION_KEY =
+    "genleaders-get-featured-popup-articles";
+
+function isArticlesPath(pathname: string) {
+    return (
+        pathname === ROUTES.ARTICLES ||
+        pathname.startsWith(`${ROUTES.ARTICLES}/`)
+    );
+}
 
 export default function GetFeaturedPopup() {
     const [isOpen, setIsOpen] = useState(false);
 
-    const navigate = useNavigate();
+    const { pathname } = useLocation();
 
     useEffect(() => {
-        const hasSeenPopup = sessionStorage.getItem(
-            POPUP_SESSION_KEY,
-        );
+        const inArticles = isArticlesPath(pathname);
 
-        if (hasSeenPopup) {
+        if (!inArticles) {
+            sessionStorage.removeItem(
+                ARTICLES_SEEN_SESSION_KEY,
+            );
+        }
+
+        if (
+            sessionStorage.getItem(
+                FORM_VISITED_SESSION_KEY,
+            ) ||
+            pathname === ROUTES.GET_FEATURED
+        ) {
+            return;
+        }
+
+        if (
+            inArticles &&
+            sessionStorage.getItem(
+                ARTICLES_SEEN_SESSION_KEY,
+            )
+        ) {
             return;
         }
 
         const timer = window.setTimeout(() => {
             setIsOpen(true);
 
-            sessionStorage.setItem(
-                POPUP_SESSION_KEY,
-                "true",
-            );
+            if (inArticles) {
+                sessionStorage.setItem(
+                    ARTICLES_SEEN_SESSION_KEY,
+                    "true",
+                );
+            }
         }, 300);
 
         return () => window.clearTimeout(timer);
-    }, []);
+    }, [pathname]);
+
+    const openForm = (url: string) => {
+        sessionStorage.setItem(
+            FORM_VISITED_SESSION_KEY,
+            "true",
+        );
+
+        window.open(
+            url,
+            "_blank",
+            "noopener,noreferrer",
+        );
+    };
 
     useEffect(() => {
         if (!isOpen) {
@@ -100,13 +146,9 @@ export default function GetFeaturedPopup() {
                 <div className="mt-10 space-y-4">
                     <Button
                         className="w-full py-3 text-base"
-                        onClick={() => {
-                            setIsOpen(false);
-
-                            navigate(
-                                ROUTES.GET_FEATURED,
-                            );
-                        }}
+                        onClick={() =>
+                            openForm(FORMS.LINKEDIN)
+                        }
                     >
                         Featured on LinkedIn →
                     </Button>
@@ -115,11 +157,7 @@ export default function GetFeaturedPopup() {
                         variant="secondary"
                         className="w-full py-3 text-base"
                         onClick={() =>
-                            window.open(
-                                FORMS.PODCAST,
-                                "_blank",
-                                "noopener,noreferrer",
-                            )
+                            openForm(FORMS.PODCAST)
                         }
                     >
                         Become a Podcast Guest →

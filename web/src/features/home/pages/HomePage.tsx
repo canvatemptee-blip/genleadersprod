@@ -6,7 +6,6 @@ import FeaturedArticles from "../components/FeaturedArticles";
 import LatestArticles from "../components/LatestArticles";
 import GetFeaturedSection from "../components/GetFeaturedSection";
 import NewsletterSection from "../components/NewsletterSection";
-import GetFeaturedPopup from "../components/GetFeaturedPopup";
 
 import {
     LINKEDIN_FEATURES,
@@ -48,7 +47,7 @@ export default function HomePage() {
         articlesWithoutFeatured.slice(0, 2);
 
     const latestArticles =
-        articlesWithoutFeatured.slice(2);
+        articlesWithoutFeatured.slice(2, 11);
 
     useEffect(() => {
         const scrollTarget =
@@ -91,7 +90,6 @@ export default function HomePage() {
 
     return (
         <>
-            <GetFeaturedPopup />
             <section id="home-content">
                 <Hero />
 
